@@ -2538,7 +2538,7 @@ const htmlString = `                                <a class='link button' href=
                                                 width="175"><span class="span"
                                                 style="padding:15px;margin:auto;display:block;width:170px;height:25px;line-height:25px;overflow:hidden;text-align:center;white-space:nowrap"
                                                 alt="1o1 basketball">ULTRAKILL</span></a>
-                                <a class='link button' href='/yalp/ela.html?book=undertale&type=local'
+                                <a class='link button' href='/active/index.html?autofill=ut.deltarune.win'
                                         data-tag="exclusive"><img height="175" src="/assets/images/game/undertale.jpg"
                                                 onerror="this.src='/assets/images/no-icon-found.png'" class="image"
                                                 width="175"><span class="span"

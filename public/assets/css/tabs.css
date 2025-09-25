@@ -240,3 +240,36 @@ section {
   margin: 4px 0;
   border-radius: 1px;
 }
+
+#debugOverlay {
+        position: fixed;
+        top: 16px;
+        right: 16px;
+        background: rgba(30, 30, 46, 0.95);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 16px;
+        color: var(--txtcolor);
+        font-family: "Inter", sans-serif;
+        font-size: 12px;
+        z-index: 99999999999999;
+        min-width: 200px;
+      }
+
+      #debugText {
+        margin-bottom: 8px;
+        line-height: 1.4;
+      }
+
+      #fpsGraph {
+        border-radius: 4px;
+        background: rgba(137, 180, 250, 0.1);
+      }
+
+      #minBtn {
+        margin-top: 8px;
+        padding: 6px 12px;
+        font-size: 10px;
+        min-width: auto;
+      }

@@ -92,6 +92,11 @@
 </head>
 
 <body theme="classic">
+      <div id="debugOverlay" style="display: none">
+      <div id="debugText">FPS: 0 | Ping: 0ms | CPU: 0%</div>
+      <canvas id="fpsGraph" width="200" height="40"></canvas>
+      <button id="minBtn">Minimize</button>
+    </div>
   <div id="customAlert"
     style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:300px;overflow-y:auto;background:black;color:var(--txtcolor);padding:30px;box-shadow:0 0 30px rgba(0,0,0,0.6);z-index:999999999999999999999999999;border-radius:16px;">
     <button id="alertClose"
@@ -142,22 +147,23 @@
   </nav>
 
   <form id="form" align="center">
-    <a href="#" id="fullscreen-icon" class="fc nav-btn" onclick="historyBack();"><i class='bx bx-chevron-left'></i></a>
-    <a href="#" id="fullscreen-icon" class="fc nav-btn" onclick="historyForward();"><i
+    <a href="#" id="fullscreen-icon" class="fc nav-btn" onclick="historyBack();" title="goes back in iframe"><i class='bx bx-chevron-left'></i></a>
+    <a href="#" id="fullscreen-icon" class="fc nav-btn" onclick="historyForward();" title="goes forward in iframe"><i
         class='bx bx-chevron-right'></i></a>
-    <a href="#" id="fullscreen-icon" class="fc nav-btn" onclick="reload();"><i class="bx bx-refresh"></i></a>
+    <a href="#" id="fullscreen-icon" class="fc nav-btn" onclick="reload();" title="reloads iframe"><i class="bx bx-refresh"></i></a>
     <input id="address" type="text" placeholder="Search privately.." class="search" autocomplete="off"
       onfocus="this.select()" />
-    <a href="#" id="home-icon" class="fc" onclick="window.location.href='/'"><i class="bx bx-home"></i></a>
-    <a href="#" id="inspect-icon" class="fc" onclick="inspect();"><i class="bx bx-code-alt"></i></a>
-    <a href="#" id="fullscreen-icon" class="fc" onclick="full();"><i class="bx bx-fullscreen"></i></a>
-    <a href="#" id="more-icon" class="fc" aria-haspopup="true" aria-expanded="false" aria-controls="more-menu" role="button" title="More"><i class="bx bx-dots-vertical"></i></a>
+    <a href="#" id="home-icon" class="fc" onclick="window.close();" title="closes the jmw tabs session"><i class="bx bx-home"></i></a>
+    <a href="#" id="inspect-icon" class="fc" onclick="inspect();" title="gives you website inspect element"><i class="bx bx-code-alt"></i></a>
+    <a href="#" id="fullscreen-icon" class="fc" onclick="full();" title="puts iframe in fullscreen"><i class="bx bx-fullscreen"></i></a>
+    <a href="#" id="more-icon" class="fc" aria-haspopup="true" aria-expanded="false" aria-controls="more-menu" role="button" title="More (dropdown)"><i class="bx bx-dots-vertical"></i></a>
   </form>
   <div id="more-menu" class="menu" role="menu">
   <a href="#" onclick="copy();" role="menuitem">Clear Session</a>
   <a href="#" onclick="registerSW();" role="menuitem">Register SW</a>
   <div class="divider"></div>
-  <a href="#" role="menuitem">History [coming soon in the 7.1.5 update; the great game fix.]</a>
+  <a href="#" role="menuitem">History [soon]</a>
+  <a href="#" aria-label="New Tab" title="New Tab">New Tab</a>
 </div>
   <section id="frames"></section>
   <script>
