@@ -685,22 +685,22 @@ function openRoom(kind, id, title) {
   if (unsubMsgs) unsubMsgs();
   messagesEl.innerHTML = "";
   const [c1, c2, c3] = roomPathForCurrent();
-  const messageQuery = query(collection(db, c1, c2, c3), orderBy("timestamp"));
+const messageQuery = query(collection(db, c1, c2, c3), orderBy("timestamp"));
   
   let isFirstLoad = true;
   
   unsubMsgs = onSnapshot(messageQuery, async (snap) => {
     if (isFirstLoad) {
-      // Initial load - render all messages
       messagesEl.innerHTML = "";
-      for (const docSnap of snap.docs) {
-        const m = docSnap.data();
-        const messageElement = await renderMessage(m);
-        messagesEl.appendChild(messageElement);
-      }
+      
+      const allMessages = await Promise.all(
+        snap.docs.map(docSnap => renderMessage(docSnap.data()))
+      );
+      
+      allMessages.forEach(el => messagesEl.appendChild(el));
+      
       isFirstLoad = false;
     } else {
-      // Subsequent updates - only handle changes
       for (const change of snap.docChanges()) {
         if (change.type === "added") {
           const m = change.doc.data();
