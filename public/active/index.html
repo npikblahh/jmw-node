@@ -20,6 +20,7 @@
   <script async defer src="./js/tabs.js" type="module"></script>
   <link href="/assets/css/tabs.css" rel="stylesheet" />
   <script type="module" async defer>
+
     import {
       setWisp,
       setProxy,
@@ -114,19 +115,15 @@
           Screen."</h3>
         <p style="font-size:12px;margin-bottom:6px;">Easy Fix (USE METHOD 1 FIRST):</p>
         <ul style="font-size:12px;list-style:disc;padding-left:20px;text-align:left;">
-          <li>Method 1 (no bare clients & uh oh & cannot get error screen): Click the button <button style="color:white"
-              onclick="registerSW()" style="font-size:13px;">Right Here</button> to register the SW, OR PRESS THE 3 DOTS
-            IN THE TOP RIGHT CORNER, PRESS CLEAR SESSION AND FOLLOW THE ALERT INSTRUCTIONS.</li>
-          <p>IF THAT DOESN'T WORK:</p>
-          <li>Method 2: Clear your cookies, copy the url over <span onclick="copy();"
+          <li>Method 1: Clear your cookies, copy the url over <span onclick="copy();"
               style="text-decoration: underline;cursor:pointer;color:white;">HERE</span> or go to
             chrome://settings/content/all?searchSubpage=(jmw link here), press the trashcan icon next to the link, then
             repeat the first method.</li>
           <p>IF THAT DOESN'T WORK:</p>
-          <li>Method 3 (no bare clients & uh oh & cannot get error screen): press CTRL+SHIFT+R [Cache Refresh] or go
+          <li>Method 2 (no bare clients & uh oh & cannot get error screen): press CTRL+SHIFT+R [Cache Refresh] or go
             over <a href="/active/index.html?goback=true" target="_blank">Here</a> and do it.</li>
           <p>IF THAT DOESN'T WORK:</p>
-          <li>Method 4 (no bare clients & uh oh & cannot get error screen): Go over <a
+          <li>Method 3 (no bare clients & uh oh & cannot get error screen): Go over <a
               href="/active/index.html?autofill=doyouseethisifyoudoitworks" target="blank" style="color:white;">Here
               (click here)</a>, if it doesn't work go <a href="/active/index.html?autofill=doyouseethisifyoudoitworks"
               target="blank" style="color:white;">Here (click here)</a> again and search something random.</li>
@@ -177,6 +174,8 @@
   </div>
   <section id="frames"></section>
   <script>
+
+
     function inspect() {
       const idFromGlobal = (typeof currentTab !== 'undefined') ?
         `frame-${currentTab}` :

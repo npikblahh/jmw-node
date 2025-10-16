@@ -669,36 +669,67 @@ function startListeners() {
   };
   openRoom(current.type, current.id, current.title);
 }
+function showLoadingScreen() {
+  messagesEl.innerHTML = `
+    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:1rem;">
+      <div style="width:50px;height:50px;border:4px solid var(--surface-hover);border-top:4px solid var(--primary);border-radius:50%;animation:spin 1s linear infinite;"></div>
+      <div style="color:var(--text-muted);font-size:0.9rem;">Loading messages...</div>
+    </div>
+  `;
+}
 
 function openRoom(kind, id, title) {
   const safeKind = sanitizeInput(kind, 10);
   const safeId = sanitizeInput(id, 50);
   const safeTitle = sanitizeInput(title, 100);
+  
+  // Unsubscribe from old room first
+  if (unsubMsgs) unsubMsgs();
+  
+  // Show loading screen
+  showLoadingScreen();
+  
+  // Update current room - do this AFTER unsubscribing but BEFORE setting up new listener
   current = {
     type: safeKind,
     id: safeId,
     title: safeTitle
   };
+  
   chatTitle.textContent = safeTitle;
   const renameBtn = document.getElementById("renameGroupBtn");
   if (renameBtn) renameBtn.style.display = safeKind === "group" ? "inline-block" : "none";
-  if (unsubMsgs) unsubMsgs();
-  messagesEl.innerHTML = "";
-  const [c1, c2, c3] = roomPathForCurrent();
-const messageQuery = query(collection(db, c1, c2, c3), orderBy("timestamp"));
   
+  const [c1, c2, c3] = roomPathForCurrent();
+  const messageQuery = query(collection(db, c1, c2, c3), orderBy("timestamp"));
+  
+  // Track which room this listener belongs to
+  const listenerRoomId = safeId;
   let isFirstLoad = true;
   
   unsubMsgs = onSnapshot(messageQuery, async (snap) => {
+    // Ignore updates if we've switched to a different room
+    if (current.id !== listenerRoomId) return;
+    
     if (isFirstLoad) {
+      // Keep loading screen visible while processing
+      
+      // Render messages in batches for better performance
+      const batchSize = 20;
+      const docs = snap.docs;
+      const fragment = document.createDocumentFragment();
+      
+      for (let i = 0; i < docs.length; i += batchSize) {
+        const batch = docs.slice(i, i + batchSize);
+        const batchMessages = await Promise.all(
+          batch.map(docSnap => renderMessage(docSnap.data()))
+        );
+        batchMessages.forEach(el => fragment.appendChild(el));
+      }
+      
+      // Clear loading screen and show messages
       messagesEl.innerHTML = "";
-      
-      const allMessages = await Promise.all(
-        snap.docs.map(docSnap => renderMessage(docSnap.data()))
-      );
-      
-      allMessages.forEach(el => messagesEl.appendChild(el));
-      
+      messagesEl.appendChild(fragment);
       isFirstLoad = false;
     } else {
       for (const change of snap.docChanges()) {
@@ -714,11 +745,12 @@ const messageQuery = query(collection(db, c1, c2, c3), orderBy("timestamp"));
     messagesEl.scrollTop = messagesEl.scrollHeight;
   }, (error) => {
     console.error("Messages listener error:", error);
+    messagesEl.innerHTML = `<div style="text-align:center;padding:2rem;color:var(--text-muted);">Failed to load messages</div>`;
     showStatusMessage("Failed to load messages", "error");
   });
+  
   setActiveRoomButton(safeId);
-}
-async function sendMessage() {
+} async function sendMessage() {
   const text = sanitizeInput(messageInput.value, 119);
   if (!text || !me.uid || !me.name) return;
 

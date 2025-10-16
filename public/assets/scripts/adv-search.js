@@ -59,7 +59,7 @@ const htmlString = `                                <a class='link button' href=
                                                 width="175"><span class="span"
                                                 style="padding:15px;margin:auto;display:block;width:170px;height:25px;line-height:25px;overflow:hidden;text-align:center;white-space:nowrap"
                                                 alt="1 on 1 soccer">1 on 1 Soccer</span></a>
-                                <a class='link button' href='/yalp/ela.html?book=1o1/football&type=local'><img
+                                <a class='link button' href='/active/index.html?autofill=https://script.google.com/macros/s/AKfycbwDQPy94m3iDQqxeBLkyAH8rWoNeunk0TyuS7j5qE6hSk3o3j6eoU7z5uy_qhgsKeKn/exec&alert=true'><img
                                                 height="175" src="/assets/images/game/1o1football.png"
                                                 onerror="this.src='/assets/images/no-icon-found.png'" class="image"
                                                 width="175"><span class="span"
@@ -158,7 +158,7 @@ const htmlString = `                                <a class='link button' href=
                                                 style="padding:15px;margin:auto;display:block;width:170px;height:25px;line-height:25px;overflow:hidden;text-align:center;white-space:nowrap"
                                                 alt="Alien Hominid">Alien Hominid</span></a>
                                 <a class='link button'
-                                        href='/yalp/ela.html?book=amazing-strange-rope-police&type=local'><img
+                                        href='/active/index.html?autofill=https://script.google.com/macros/s/AKfycbwAoMJxFkkCGbz6H0x2lq5uVhb1vvQRKraex1znydX5Gm0jWse3HWUTvdU34ghoPqQauQ/exec&alert=true'><img
                                                 height="175" src="/assets/images/game/amazing-strange.jpeg"
                                                 onerror="this.src='/assets/images/no-icon-found.png'" class="image"
                                                 width="175"><span class="span"
@@ -328,7 +328,7 @@ const htmlString = `                                <a class='link button' href=
                                                 width="175"><span class="span"
                                                 style="padding:15px;margin:auto;display:block;width:170px;height:25px;line-height:25px;overflow:hidden;text-align:center;white-space:nowrap"
                                                 alt="basketball legends">Basketball Legends</span></a>
-                                <a class='link button' href='/yalp/ela.html?book=basketbros&type=local'><img
+                                <a class='link button' href='/active/index.html?autofill=https://script.google.com/macros/s/AKfycbxUfaDSpH-0SJL0WPKt38JY7OOOGMmtpY9JTSbL8pvtjxS7jSpNHHu6MdZgWUshIU00Kw/exec&alert=true'><img
                                                 height="175" src="/assets/images/game/basketbros-io.jpg"
                                                 onerror="this.src='/assets/images/no-icon-found.png'" class="image"
                                                 width="175"><span class="span"
@@ -1369,7 +1369,7 @@ const htmlString = `                                <a class='link button' href=
                                                 width="175"><span class="span"
                                                 style="padding:15px;margin:auto;display:block;width:170px;height:25px;line-height:25px;overflow:hidden;text-align:center;white-space:nowrap"
                                                 alt="hoh">House Of Hazards</span></a>
-                                <a class='link button' href='/yalp/ela.html?book=hill-climbing-racing&type=local'><img
+                                <a class='link button' href='/active/index.html?autofill=https://classroom-6x.org/games/hill-climb/'><img
                                                 height="175" src="/assets/images/game/hill-climbing-racing.png"
                                                 onerror="this.src='/assets/images/no-icon-found.png'" class="image"
                                                 width="175"><span class="span"
@@ -2308,7 +2308,7 @@ const htmlString = `                                <a class='link button' href=
                                                 onerror="this.src='/assets/images/no-icon-found.png'" class="image"
                                                 width="175"><span class="span"
                                                 style="padding:15px;margin:auto;display:block;width:170px;height:25px;line-height:25px;overflow:hidden;text-align:center;white-space:nowrap"
-                                                alt="hcr">Stick Archers</span></a>
+                                                alt="hcr">Ragdoll Archers</span></a>
                                 <a class='link button' href='/yalp/ela.html?book=stick-merge&type=3kh0'><img
                                                 height="175" src="/assets/images/game/stick-merge.png"
                                                 onerror="this.src='/assets/images/no-icon-found.png'" class="image"
@@ -2375,13 +2375,13 @@ const htmlString = `                                <a class='link button' href=
                                                 width="175"><span class="span"
                                                 style="padding:15px;margin:auto;display:block;width:170px;height:25px;line-height:25px;overflow:hidden;text-align:center;white-space:nowrap"
                                                 alt="awesome">Seven Days In Purgatory</span></a>
-                                <a class='link button' href='/yalp/ela.html?book=euro-cup&type=local'><img height="175"
+                                <a class='link button' href='/active/index.html?autofill=https://soccerskills-eurocup.gitlab.io/file/&alert=true'><img height="175"
                                                 src="/assets/images/game/ssec.png"
                                                 onerror="this.src='/assets/images/no-icon-found.png'" class="image"
                                                 width="175"><span class="span"
                                                 style="padding:15px;margin:auto;display:block;width:170px;height:25px;line-height:25px;overflow:hidden;text-align:center;white-space:nowrap"
                                                 alt="ssec">Soccer Skills: Euro Cup</span></a>
-                                <a class='link button' href='/active/index.html?autofill=https://classroom-6x.io/full/super-liquid-soccer/&alert=true' data-tag="exclusive"><img height="175"
+                                <a class='link button' href='/active/index.html?autofill=https://superliquidsoccer.gitlab.io/file/&alert=true' data-tag="exclusive"><img height="175"
                                                 src="/assets/images/game/sls.jpeg"
                                                 onerror="this.src='/assets/images/no-icon-found.png'" class="image"
                                                 width="175"><span class="span"

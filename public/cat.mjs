@@ -169,6 +169,7 @@ export function setFrames(frames) {
  * Class representing a browser tab with its own iframe.
  */
 export class Tab {
+
   /**
    * Creates a new tab with an iframe and appends it to frames container.
    */
@@ -242,27 +243,70 @@ export class Tab {
   /**
    * Handles iframe load event: updates history and address input.
    */
-  handleLoad() {
-    let url = decodeURIComponent(
-      this.frame?.contentWindow?.location.href.split("/").pop(),
-    );
-    let title = this.frame?.contentWindow?.document.title;
+handleLoad() {
+  this.statusObject = { isLoading: true, timesErrored: 0 };
 
-    let history = localStorage.getItem("history")
-      ? JSON.parse(localStorage.getItem("history"))
-      : [];
-    history = [...history, { url, title }];
-    localStorage.setItem("history", JSON.stringify(history));
+  // Parse the current URL & title
+  let url = decodeURIComponent(
+    this.frame?.contentWindow?.location.href.split("/").pop()
+  );
+  let title = this.frame?.contentWindow?.document.title;
 
-    document.dispatchEvent(
-      new CustomEvent("url-changed", {
-        detail: { tabId: currentTab, title, url },
-      }),
-    );
+  // Save tab history
+  let history = localStorage.getItem("history")
+    ? JSON.parse(localStorage.getItem("history"))
+    : [];
+  history.push({ url, title });
+  localStorage.setItem("history", JSON.stringify(history));
 
-    if (url === "newtab") url = "jmw://newtab";
-    addressInput.value = url;
+  // --- Enhanced iframe error detection ---
+  const checkForIframeError = () => {
+    try {
+      const iframeDoc = this.frame.contentDocument || this.frame.contentWindow.document;
+
+      // Safely read text content (in lowercase for easy matching)
+      const bodyText = iframeDoc.body?.textContent?.toLowerCase() || "";
+
+      const hasBareClientError = bodyText.includes("there are no bare clients");
+      const hasErrorTitle = iframeDoc.querySelector("#errorTitle");
+
+      const shouldReload =
+        this.statusObject.timesErrored < 5 && (hasBareClientError || hasErrorTitle);
+
+      if (shouldReload) {
+        this.statusObject.timesErrored++;
+        console.warn(
+          `Iframe error detected (${this.statusObject.timesErrored}/5). Reloading...`
+        );
+        this.frame.contentWindow.location.reload();
+        return true;
+      } else {
+        // Reset if it's clean
+        this.statusObject.timesErrored = 0;
+        return false;
+      }
+    } catch (err) {
+      // Cross-origin iframe or inaccessible document — skip safely
+      console.debug("Iframe inaccessible (cross-origin). Skipping error scan.", err);
+      return false;
+    }
+  };
+
+  // Check immediately and then again after a short delay
+  if (!checkForIframeError()) {
+    setTimeout(checkForIframeError, 1000);
   }
+
+  // --- Dispatch custom event ---
+  document.dispatchEvent(
+    new CustomEvent("url-changed", {
+      detail: { tabId: currentTab, title, url },
+    })
+  );
+
+  if (url === "newtab") url = "jmw://newtab";
+  addressInput.value = url;
+}
 }
 
 /**
