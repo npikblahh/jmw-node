@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout this repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Find the latest successful workflow run
         id: latest_run
@@ -38,11 +40,27 @@ jobs:
         run: |
           rm -rf ./public/scram
 
-      - name: Unzip artifact to /public/scram
+      - name: Move artifact to /public/scram
         run: |
-          mv ./temp_artifact/ ./public/scram
+          mv ./temp_artifact ./public/scram
 
       - name: Verify extraction
         run: |
           echo "Contents of /public/scram:"
           ls -al ./public/scram
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Stage changes
+          git add public/scram
+          
+          # Only commit if there are changes
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update Scramjet artifact (auto-sync)"
+            git push
+          fi
