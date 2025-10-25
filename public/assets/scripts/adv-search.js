@@ -2183,7 +2183,7 @@ const htmlString = `            <a class='link button' target="_blank" href='htt
                                                 width="175"><span class="span"
                                                 style="padding:15px;margin:auto;display:block;width:170px;height:45px;line-height:25px;overflow:hidden;text-align:center;white-space:wrap;"
                                                 alt="rtbw">Retro Bowl</span></a>
-                                <a class='link button' href='/active/index.html?autofill=https://dojq2hudgo7sk.cloudfront.net/assets/allgames/retrobowlcollege/index.html' data-tag="exclusive"><img
+                                <a class='link button' href='/yalp/ela.html?book=retrobowlcollege&type=local' data-tag="exclusive"><img
                                                 height="175" src="/assets/images/game/rb-college.png"
                                                 onerror="this.src='/assets/images/no-icon-found.png'" class="image"
                                                 width="175"><span class="span"
@@ -2513,6 +2513,12 @@ const htmlString = `            <a class='link button' target="_blank" href='htt
                                                 width="175"><span class="span"
                                                 style="padding:15px;margin:auto;display:block;width:170px;height:45px;line-height:25px;overflow:hidden;text-align:center;white-space:wrap;"
                                                 alt="awesome">Sonic Revert</span></a>
+                                <a class='link button' href='/active/index.html?autofill=https://truffled.lol/extra/main/index.html' data-tag="exclusive"><img
+                                                height="175" src="/assets/images/game/sonicmania.png"
+                                                onerror="this.src='/assets/images/no-icon-found.png'" class="image"
+                                                width="175"><span class="span"
+                                                style="padding:15px;margin:auto;display:block;width:170px;height:45px;line-height:25px;overflow:hidden;text-align:center;white-space:wrap;"
+                                                alt="">Sonic Mania</span></a>
                                 <a class='link button' href='/yalp/ela.html?book=superfowlst&type=local'><img
                                                 height="175" src="/assets/images/game/superfowlst.png"
                                                 onerror="this.src='/assets/images/no-icon-found.png'" class="image"
