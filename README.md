@@ -25,7 +25,7 @@
 - **NEW!!** Movies/TV Shows
 
 ### To-DO:
-- [ ] Fix games
+- [x] Fix games
 - [X] Intergrate Scramjet and Ultraviolet into search
 - [X] Add CDN Chooser
 - [X] Fix jmw getting detected by goguardian
