@@ -32,7 +32,8 @@
 
 # Deployment
 > to deploy on replit remix the project given
-<br>
+
+
 [![Deploy On Replit](https://shields.io/badge/Deploy%20on-replit-important?logo=replit&style=for-the-badge)](https://replit.com/@galacticmainten/jmw-deploy?v=1)
 - can also be deployed to any node.js service as long as you have this repository url: https://github.com/JustJxrdanWasDefinetlyTaken/jmw-node
 # Credits
