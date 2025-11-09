@@ -32,8 +32,7 @@
 
 # Deployment
 > to deploy on replit remix the project given
-<a target="_blank" href="https://vercel.com/new/clone?repository-url=https://github.com/JustJxrdanWasDefinetlyTaken/jmw-deployable"><img alt="Deploy to Vercel" src="https://binbashbanana.github.io/deploy-buttons/buttons/remade/vercel.svg"></a>
-<a target="_blank" href="https://render.com/deploy?repo=https://github.com/JustJxrdanWasDefinetlyTaken/jmw-deployable"><img alt="Deploy to Render" src="https://binbashbanana.github.io/deploy-buttons/buttons/remade/render.svg"></a>
+<br>
 [![Deploy On Replit](https://shields.io/badge/Deploy%20on-replit-important?logo=replit&style=for-the-badge)](https://replit.com/@galacticmainten/jmw-deploy?v=1)
 - can also be deployed to any node.js service as long as you have this repository url: https://github.com/JustJxrdanWasDefinetlyTaken/jmw-node
 # Credits
