@@ -26,10 +26,10 @@
           <div class="model-selector">
     <label for="model-select">Model:</label>
     <select id="model-select">
-      <option value="gemma2-9b-it">Gemma 2 9B</option>
+      <option value="openai/gpt-oss-120b">GPT OSS 120B</option>
       <option value="llama-3.1-8b-instant">Llama 3.1 8B</option>
-      <option value="openai/gpt-oss-20b">GPT Oss 20B</option>
-      <option value="deepseek-r1-distill-llama-70b">Deepseek-R1</option>
+      <option value="openai/gpt-oss-20b">GPT OSS 20B</option>
+      <option value="moonshotai/kimi-k2-instruct-0905">Kimi K2 [FAST]</option>
       <option value="llama-3.3-70b-versatile">Llama 3.3 70B</option>
     </select>
     </div>
@@ -62,7 +62,6 @@ let currentChatId = null;
 let currentController = null;
 let isGenerating = false;
 
-// Load chats from memory on startup
 function loadChats() {
   try {
     const stored = sessionStorage.getItem('jmw_chats');
@@ -78,7 +77,6 @@ function loadChats() {
   }
 }
 
-// Save chats to memory
 function saveChats() {
   try {
     sessionStorage.setItem('jmw_chats', JSON.stringify(chats));
@@ -152,13 +150,11 @@ function renderMessages() {
 function formatMessage(text) {
   let formatted = text;
   
-  // Headers
   formatted = formatted.replace(/^# (.+)$/gm, '<h1 style="font-size: 2em; font-weight: bold; margin: 16px 0;">$1</h1>');
   formatted = formatted.replace(/^## (.+)$/gm, '<h2 style="font-size: 1.5em; font-weight: bold; margin: 14px 0;">$1</h2>');
   formatted = formatted.replace(/^### (.+)$/gm, '<h3 style="font-size: 1.2em; font-weight: bold; margin: 12px 0;">$1</h3>');
   formatted = formatted.replace(/^-# (.+)$/gm, '<h4 style="font-size: 0.9em; font-weight: bold; margin: 10px 0;">$1</h4>');
-  
-  // Code blocks
+
   formatted = formatted.replace(/```([^`]+)```/g, (match, code) => {
     const id = 'code-' + Math.random().toString(36).substr(2, 9);
     return `<div style="position: relative; margin: 12px 0;">
@@ -169,16 +165,12 @@ function formatMessage(text) {
     </div>`;
   });
   
-  // Bold
   formatted = formatted.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
   
-  // Italic
   formatted = formatted.replace(/\*(.+?)\*/g, '<em>$1</em>');
   
-  // List items
   formatted = formatted.replace(/^- (.+)$/gm, '<li style="margin-left: 20px;">$1</li>');
   
-  // Paragraphs
   formatted = formatted.split('\n').filter(line => line.trim()).map(line => {
     if (line.match(/^<(h[1-4]|li|div|pre)/)) return line;
     return `<p style="margin: 12px 0;">${line}</p>`;
@@ -232,7 +224,6 @@ function deleteChat(idx) {
 async function sendMessage() {
   if (!userInput.value.trim() || currentChatId === null || isGenerating) return;
 
-  // RATE LIMIT: 70 messages per 4 hours
   const now = Date.now();
   const limitWindow = 4 * 60 * 60 * 1000;
   const maxPrompts = 70;
@@ -258,8 +249,7 @@ async function sendMessage() {
   const text = userInput.value.trim();
   const modelSelect = document.getElementById('model-select');
   const currentModel = modelSelect ? modelSelect.value : 'gemma2-9b-it';
-  
-  // Save the model to the current chat
+
   if (!chats[currentChatId].model) {
     chats[currentChatId].model = currentModel;
   }
@@ -320,7 +310,6 @@ sendButton.addEventListener('click', () => {
 userInput.addEventListener('keypress', e => { if (e.key === 'Enter' && !isGenerating) sendMessage(); });
 newChatButton.addEventListener('click', () => addChat('New Conversation'));
 
-// Load saved chats on startup
 loadChats();
 
 if (chats.length === 0) {
