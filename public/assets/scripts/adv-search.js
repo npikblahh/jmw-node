@@ -2541,12 +2541,36 @@ const htmlString = `            <a class='link button' target="_blank" href='htt
                                                 width="175"><span class="span"
                                                 style="padding:15px;margin:auto;display:block;width:170px;height:45px;line-height:25px;overflow:hidden;text-align:center;white-space:wrap;"
                                                 alt="awesome">Sonic Revert</span></a>
-                                <a class='link button' href='/yalp/ela.html?book=sonic-mania&type=local' data-tag="exclusive"><img
+                                <a class='link button' href='/active/index.html?autofill=https://truffled.lol/extra/main/index.html' data-tag="exclusive"><img
                                                 height="175" src="/assets/images/game/sonicmania.png"
                                                 onerror="this.src='/assets/images/no-icon-found.png'" class="image"
                                                 width="175"><span class="span"
                                                 style="padding:15px;margin:auto;display:block;width:170px;height:45px;line-height:25px;overflow:hidden;text-align:center;white-space:wrap;"
                                                 alt="">Sonic Mania</span></a>
+                                <a class='link button' href='/yalp/ela.html?book=sonic&type=local' data-tag="exclusive"><img
+                                                height="175" src="/assets/images/game/sonic.png"
+                                                onerror="this.src='/assets/images/no-icon-found.png'" class="image"
+                                                width="175"><span class="span"
+                                                style="padding:15px;margin:auto;display:block;width:170px;height:45px;line-height:25px;overflow:hidden;text-align:center;white-space:wrap;"
+                                                alt="">Sonic 1</span></a>
+                                <a class='link button' href='/yalp/ela.html?book=sonic/2&type=local' data-tag="exclusive"><img
+                                                height="175" src="/assets/images/game/sonic2.png"
+                                                onerror="this.src='/assets/images/no-icon-found.png'" class="image"
+                                                width="175"><span class="span"
+                                                style="padding:15px;margin:auto;display:block;width:170px;height:45px;line-height:25px;overflow:hidden;text-align:center;white-space:wrap;"
+                                                alt="">Sonic 2</span></a>
+                                <a class='link button' href='/yalp/ela.html?book=sonic/3&type=local' data-tag="exclusive"><img
+                                                height="175" src="/assets/images/game/sonic3.png"
+                                                onerror="this.src='/assets/images/no-icon-found.png'" class="image"
+                                                width="175"><span class="span"
+                                                style="padding:15px;margin:auto;display:block;width:170px;height:45px;line-height:25px;overflow:hidden;text-align:center;white-space:wrap;"
+                                                alt="">Sonic 3</span></a>
+                                <a class='link button' href='/yalp/ela.html?book=sonic/cd&type=local' data-tag="exclusive"><img
+                                                height="175" src="/assets/images/game/soniccd.png"
+                                                onerror="this.src='/assets/images/no-icon-found.png'" class="image"
+                                                width="175"><span class="span"
+                                                style="padding:15px;margin:auto;display:block;width:170px;height:45px;line-height:25px;overflow:hidden;text-align:center;white-space:wrap;"
+                                                alt="">Sonic CD</span></a>
                                 <a class='link button' href='/yalp/ela.html?book=superfowlst&type=local'><img
                                                 height="175" src="/assets/images/game/superfowlst.png"
                                                 onerror="this.src='/assets/images/no-icon-found.png'" class="image"
