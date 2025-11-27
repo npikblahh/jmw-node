@@ -229,23 +229,6 @@
   }
 </script>
 <script>
-  (function () {
-    if (localStorage.getItem("hideCustomAlert") === "true") return
-    var alertBox = document.getElementById("customAlert")
-    var closeBtn = document.getElementById("alertClose")
-    var hideBtn = document.getElementById("alertHide")
-    alertBox.style.display = "block"
-    closeBtn.addEventListener("click", function () {
-      alertBox.style.display = "none"
-    })
-    hideBtn.addEventListener("click", function () {
-      localStorage.setItem("hideCustomAlert", "true")
-      alertBox.style.display = "none"
-    })
-  })();
-</script>
-
-<script>
   function copy() {
     const url = window.location.origin;
     const text = "chrome://settings/content/all?searchSubpage=" + url;
@@ -283,6 +266,7 @@ if (new URLSearchParams(location.search).has("goback")) {
 }
 </script>
 <script>
+  const paramss = new URLSearchParams(location.search);
   if (paramss.has("autofill")) {
     const messages = [
       "Wait up twin ❤‍🩹",
