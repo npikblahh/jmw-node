@@ -1,2 +1,4 @@
 node_modules
 .env
+sshstuff
+sshstuff.pub
