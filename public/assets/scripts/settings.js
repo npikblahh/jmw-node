@@ -1,43 +1,39 @@
 (() => {
-localStorage.setItem("aboutBlank", "disabled");
+  if (localStorage.getItem("aboutBlank") === null) localStorage.setItem("aboutBlank", "disabled");
 
-const isAboutBlankEnabled = localStorage.getItem("aboutBlank") === "enabled";
-  const name = localStorage.getItem("name") || "Home";
-  const icon = localStorage.getItem("icon") || "https://ssl.gstatic.com/classroom/favicon.png";
+  const isAboutBlankEnabled = localStorage.getItem("aboutBlank") === "enabled";
+
   if (isAboutBlankEnabled) {
     let inFrame;
-    try {
-      inFrame = window !== top;
-    } catch {
-      inFrame = true;
-    }
+    try { inFrame = window !== top; } catch { inFrame = true; }
+
     if (!inFrame && !navigator.userAgent.includes("Firefox")) {
       const popup = open("about:blank", "_blank");
       if (!popup || popup.closed) {
-        alert("To hide from filters, allow popups and reload. By pressing ok, you agree to our TOS and Privacy Policy.");
+        alert("To hide from filters, allow popups and reload.");
       } else {
-        const doc = popup.document;
-        const iframe = doc.createElement("iframe");
-        const style = iframe.style;
-        const link = doc.createElement("link");
-        const savedTitle = localStorage.getItem("TabCloak_Title");
-        const savedFavicon = localStorage.getItem("TabCloak_Favicon");
-        doc.title = savedTitle || "about:blank";
-        if (savedFavicon) {
-          link.rel = "icon";
-          link.href = savedFavicon;
-          doc.head.appendChild(link);
+        const d = popup.document;
+        const t = localStorage.getItem("TabCloak_Title") || "about:blank";
+        const f = localStorage.getItem("TabCloak_Favicon");
+
+        d.title = t;
+        if (f) {
+          const l = d.createElement("link");
+          l.rel = "icon";
+          l.href = f;
+          d.head.appendChild(l);
         }
-        iframe.src = location.href;
-        style.position = "fixed";
-        style.top = style.bottom = style.left = style.right = 0;
-        style.border = style.outline = "none";
-        style.width = style.height = "100%";
-        doc.body.appendChild(iframe);
+
+        const i = d.createElement("iframe");
+        i.src = location.href;
+        i.style = "position:fixed;top:0;left:0;width:100%;height:100%;border:none;outline:none";
+        d.body.appendChild(i);
+
         location.replace("https://classroom.google.com");
       }
     }
   }
+
   const presets = {
     google: { title: "Google", favicon: "/assets/images/cloaks/gsearch.ico" },
     classroom: { title: "Home", favicon: "https://ssl.gstatic.com/classroom/favicon.png" },
@@ -48,117 +44,123 @@ const isAboutBlankEnabled = localStorage.getItem("aboutBlank") === "enabled";
     chrome: { title: "New Tab", favicon: "/assets/images/newtab.png" },
     lausd: { title: "Los Angeles Unified School District / Homepage", favicon: "https://www.lausd.org/cms/lib/CA01000043/Centricity/template/globalassets/images/favicon/favicon1.ico" }
   };
+
   const titleInput = document.getElementById("customTitle");
   const faviconInput = document.getElementById("customFavicon");
-  const select = document.getElementById("presetSelect");
-  function applySettings(title, favicon) {
+  const presetSelect = document.getElementById("presetSelect");
+
+  function apply(title, favicon) {
     if (title) {
       document.title = title;
       localStorage.setItem("TabCloak_Title", title);
     }
     if (favicon) {
-      document.querySelectorAll("link[rel~='icon'], link[rel='shortcut icon']").forEach(link => link.href = favicon);
+      document.querySelectorAll("link[rel~='icon'],link[rel='shortcut icon']")
+        .forEach(e => e.href = favicon);
       localStorage.setItem("TabCloak_Favicon", favicon);
     }
   }
-  document.getElementById("applyBtn").addEventListener("click", () => {
-    applySettings(titleInput.value, faviconInput.value);
-  });
-  document.getElementById("resetBtn").addEventListener("click", () => {
+
+  document.getElementById("applyBtn").onclick = () => {
+    apply(titleInput.value, faviconInput.value);
+  };
+
+  document.getElementById("resetBtn").onclick = () => {
     localStorage.removeItem("TabCloak_Title");
     localStorage.removeItem("TabCloak_Favicon");
     document.title = "Jordan's Math Work - V7";
-    document.querySelector("link[rel~='icon']").href = "/assets/images/jmw.png";
+    const icon = document.querySelector("link[rel~='icon']");
+    if (icon) icon.href = "/assets/images/jmw.png";
     titleInput.value = "";
     faviconInput.value = "";
-    select.value = "";
-  });
-  select.addEventListener("change", () => {
-    const selected = presets[select.value];
-    if (selected) {
-      titleInput.value = selected.title;
-      faviconInput.value = selected.favicon;
-      applySettings(selected.title, selected.favicon);
+    presetSelect.value = "";
+  };
+
+  presetSelect.onchange = () => {
+    const p = presets[presetSelect.value];
+    if (p) {
+      titleInput.value = p.title;
+      faviconInput.value = p.favicon;
+      apply(p.title, p.favicon);
     }
-  });
-  let defaultHotkey = localStorage.getItem('hotkey') || '`';
-  let redirectURL = localStorage.getItem('redirectURL') || 'https://google.com';
-  const hotkeyInput = document.getElementById('hotkey-input');
-  const redirectURLInput = document.getElementById('redirect-url-input');
-  const changeHotkeyButton = document.getElementById('change-hotkey-btn');
-  const changeURLButton = document.getElementById('change-URL-btn');
-  hotkeyInput.value = defaultHotkey;
+  };
+
+  let hotkey = localStorage.getItem("hotkey") || "`";
+  let redirectURL = localStorage.getItem("redirectURL") || "https://google.com";
+
+  const hotkeyInput = document.getElementById("hotkey-input");
+  const redirectURLInput = document.getElementById("redirect-url-input");
+
+  hotkeyInput.value = hotkey;
   redirectURLInput.value = redirectURL;
-  hotkeyInput.addEventListener('keydown', e => {
+
+  hotkeyInput.onkeydown = e => {
     e.preventDefault();
-    if (e.key.length === 1 || e.key === 'Escape' || e.key.startsWith('F')) {
+    if (e.key.length === 1 || e.key === "Escape" || e.key.startsWith("F")) {
       hotkeyInput.value = e.key;
     }
-  });
-  changeHotkeyButton.addEventListener('click', () => {
-    const newHotkey = hotkeyInput.value.trim();
-    if (newHotkey) {
-      defaultHotkey = newHotkey;
-      localStorage.setItem('hotkey', defaultHotkey);
-      alert('Hotkey changed successfully to: ' + defaultHotkey);
-    } else {
-      alert('Enter a hotkey dummy.');
-    }
-  });
-  changeURLButton.addEventListener('click', () => {
-    let newURL = redirectURLInput.value.trim();
-    if (newURL && !/^https?:\/\//i.test(newURL)) newURL = 'https://' + newURL;
-    if (newURL && !/\.[a-z]{2,}$/i.test(newURL)) newURL += '.com';
-    if (newURL) {
-      redirectURL = newURL;
-      localStorage.setItem('redirectURL', redirectURL);
-      alert('Redirect URL changed successfully to: ' + redirectURL);
-    } else {
-      alert('Enter a valid URL idiot.');
-    }
-  });
-  window.addEventListener('keydown', e => {
-    if (e.key === defaultHotkey) location.replace(redirectURL);
-  });
+  };
+
+  document.getElementById("change-hotkey-btn").onclick = () => {
+    const k = hotkeyInput.value.trim();
+    if (!k) return alert("Enter a hotkey.");
+    hotkey = k;
+    localStorage.setItem("hotkey", k);
+    alert("Hotkey changed to: " + k);
+  };
+
+  document.getElementById("change-URL-btn").onclick = () => {
+    let u = redirectURLInput.value.trim();
+    if (u && !/^https?:\/\//i.test(u)) u = "https://" + u;
+    if (u && !/\.[a-z]{2,}$/i.test(u)) u += ".com";
+    redirectURL = u;
+    localStorage.setItem("redirectURL", u);
+    alert("Redirect URL changed to: " + u);
+  };
+
+  window.onkeydown = e => {
+    if (e.key === hotkey) location.replace(redirectURL);
+  };
+
   const savedTitle = localStorage.getItem("TabCloak_Title");
   const savedFavicon = localStorage.getItem("TabCloak_Favicon");
-  if (savedTitle) {
-    document.title = savedTitle;
-    titleInput.value = savedTitle;
-  }
+
+  if (savedTitle) document.title = savedTitle;
   if (savedFavicon) {
-    document.querySelectorAll("link[rel~='icon'], link[rel='shortcut icon']").forEach(link => link.href = savedFavicon);
-    faviconInput.value = savedFavicon;
+    document.querySelectorAll("link[rel~='icon'],link[rel='shortcut icon']")
+      .forEach(e => e.href = savedFavicon);
   }
+  if (savedTitle) titleInput.value = savedTitle;
+  if (savedFavicon) faviconInput.value = savedFavicon;
+
   const aboutBlankToggle = document.getElementById("aboutBlankToggle");
-  if (localStorage.getItem("aboutBlank") === null) {
-    localStorage.setItem("aboutBlank", "enabled");
-  }
-  aboutBlankToggle.checked = localStorage.getItem("aboutBlank") === "enabled";
-  aboutBlankToggle.addEventListener("change", () => {
-    const value = aboutBlankToggle.checked ? "enabled" : "disabled";
-    localStorage.setItem("aboutBlank", value);
+  aboutBlankToggle.checked = isAboutBlankEnabled;
+
+  aboutBlankToggle.onchange = () => {
+    localStorage.setItem("aboutBlank", aboutBlankToggle.checked ? "enabled" : "disabled");
     location.reload();
-  });
+  };
+
   if (localStorage.getItem("leaveConfirmation") === "enabled") {
     window.onbeforeunload = () => "";
   }
+
   window.launchBlob = () => {
-    const host = location.host;
-    const frame = `<iframe src="https://${host}/index.html" style="position:fixed;top:0;left:0;width:100%;height:100%;border:none;"></iframe>`;
-    const blob = new Blob([frame], { type: 'text/html' });
+    const frame = `<iframe src="https://${location.host}/index.html" style="position:fixed;top:0;left:0;width:100%;height:100%;border:none"></iframe>`;
+    const blob = new Blob([frame], { type: "text/html" });
     const url = URL.createObjectURL(blob);
-    const win = window.open(url);
+    const win = open(url);
+
     if (win) {
       win.onload = () => {
-        const savedTitle = localStorage.getItem("TabCloak_Title") || "about:blank";
-        const savedFavicon = localStorage.getItem("TabCloak_Favicon");
-        win.document.title = savedTitle;
-        if (savedFavicon) {
-          const link = win.document.createElement('link');
-          link.rel = 'icon';
-          link.href = savedFavicon;
-          win.document.head.appendChild(link);
+        const t = localStorage.getItem("TabCloak_Title") || "about:blank";
+        const f = localStorage.getItem("TabCloak_Favicon");
+        win.document.title = t;
+        if (f) {
+          const l = win.document.createElement("link");
+          l.rel = "icon";
+          l.href = f;
+          win.document.head.appendChild(l);
         }
       };
     }

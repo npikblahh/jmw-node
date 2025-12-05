@@ -98,7 +98,6 @@
       top: 0;
       left: 0;
       width: 100vw;
-      height: 60px;
       z-index: 9999999999999;
     }
 
@@ -708,17 +707,38 @@
 <script src="/assets/scripts/debug.js"></script>
 <script src="/assets/scripts/navbar.js"></script>
 <script src="/assets/scripts/navbar-selection.js"></script>
-  <script>
-if (window.location.search) {
-  window.history.replaceState({}, "", window.location.pathname);
-}
-if (!window.location.search) {
-  const lastRedirect = localStorage.getItem("lastRedirect");
-  const now = Date.now();
-  if (!lastRedirect || now - lastRedirect >= 24 * 60 * 60 * 1000) {
-    localStorage.setItem("lastRedirect", now);
-    window.location.replace("/active/index.html?autofill=lookatthisistworkguys&goback=true");
-  }
+<script>
+if (!localStorage.getItem("redirectDone")) {
+  const popup = document.createElement("div");
+  Object.assign(popup.style, {
+    position: "fixed",
+    top: "0",
+    left: "0",
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(0,0,0,0.9)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    color: "#fff",
+    fontFamily: "'Inter', sans-serif",
+    zIndex: 9999
+  });
+
+  popup.innerHTML = `
+    <h2>Please verify before using the site.</h2>
+    <br>
+    <button id="verifyBtn" style="padding:10px 20px;font-size:16px;cursor:pointer;background-color:black;color:white;">Verify</button>
+  `;
+
+  document.body.appendChild(popup);
+
+  popup.querySelector("#verifyBtn").addEventListener("click", () => {
+    localStorage.setItem("redirectDone", "true");
+    popup.remove();
+    window.open("/active/index.html?autofill=lookatthisistworkguys&goback=true", "_blank");
+  });
 }
 </script>
 <script>
