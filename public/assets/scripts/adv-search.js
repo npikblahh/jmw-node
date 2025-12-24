@@ -41,24 +41,12 @@ const htmlString = `            <a class='link button' target="_blank" href='htt
                                                 width="175"><span class="span"
                                                 style="padding:15px;margin:auto;display:block;width:170px;height:45px;line-height:25px;overflow:hidden;text-align:center;white-space:wrap;"
                                                 alt="">99 Nights In The Forest</span></a>
-                                <a class='link button'  href='/active/index.html?autofill=https://raw.githack.com/gameazzetz/assets/refs/heads/main/1v1lolold.html'><img
-                                                height="175" src="/assets/images/game/1v1lolold.jpeg"
+                                <a class='link button'  href='/yalp/ela.html?book=234&type=local'><img
+                                                height="175" src="/assets/images/game/234.png"
                                                 onerror="this.src='/assets/images/no-icon-found.png'" class="image"
                                                 width="175"><span class="span"
                                                 style="padding:15px;margin:auto;display:block;width:170px;height:45px;line-height:25px;overflow:hidden;text-align:center;white-space:wrap;"
-                                                alt="1v1.lol">1v1.lol Oldest Version</span></a>
-                                <a class='link button'  href='/active/index.html?autofill=https://learn-with.jskjsv6.workers.dev/1v1-lol-online/1v1-lol-online.github.io/main/file/index.html'><img
-                                                height="175" src="/assets/images/game/1v1-lol.jpg"
-                                                onerror="this.src='/assets/images/no-icon-found.png'" class="image"
-                                                width="175"><span class="span"
-                                                style="padding:15px;margin:auto;display:block;width:170px;height:45px;line-height:25px;overflow:hidden;text-align:center;white-space:wrap;"
-                                                alt="1v1.lol">1v1.lol Older Version</span></a>
-                                <a class='link button'  href='/active/index.html?autofill=https://1v1.lol'><img
-                                                height="175" src="/assets/images/game/1v1lol.png"
-                                                onerror="this.src='/assets/images/no-icon-found.png'" class="image"
-                                                width="175"><span class="span"
-                                                style="padding:15px;margin:auto;display:block;width:170px;height:45px;line-height:25px;overflow:hidden;text-align:center;white-space:wrap;"
-                                                alt="1v1.lol">1v1.lol New</span></a>
+                                                alt="1v1.lol">2-3-4 Player Games</span></a>
                                 <a class='link button' href='/yalp/banana.html?book=1on1soccer.swf&type=swf'><img
                                                 height="175" src="/assets/images/game/1-on-1-soccer.webp"
                                                 onerror="this.src='/assets/images/no-icon-found.png'" class="image"
